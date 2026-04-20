@@ -56,6 +56,9 @@ ALTER TABLE credit_card MODIFY COLUMN expiring_date DATE;
 ```
 
 **Carga multi-país con LOAD DATA INFILE:**
+
+Los CSVs están disponibles en la carpeta [`/data`](./data) del repositorio.
+
 ```sql
 LOAD DATA INFILE "users_usa.csv" INTO TABLE user
 FIELDS TERMINATED BY ',' ENCLOSED BY '"'
