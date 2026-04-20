@@ -86,7 +86,7 @@ ORDER BY SUM(amount) DESC LIMIT 5;
 
 ## Modelo en Power BI — Star Schema
 
-La tabla `transaction` actúa como tabla de hechos central, conectada a `credit_card`, `company`, `user` y `products` a través de la tabla intermedia `comprados`. Esta arquitectura permite análisis por producto sin duplicar filas de transacción. El modelo incluye además una `TablaFechas` calculada para análisis temporal y una tabla `Medidas` separada como buena práctica de organización DAX.
+La tabla `transaction` actúa como tabla de hechos central, conectada a `credit_card`, `company`, `user` y `products` a través de la tabla intermedia `comprados`. Esta arquitectura permite análisis por producto sin duplicar filas de transacción. El modelo incluye una tabla `Medidas` separada como buena práctica de organización DAX.
 
 <p align="center">
   <img alt="Star Schema Power BI" src="./images/star_schema.png"/>
