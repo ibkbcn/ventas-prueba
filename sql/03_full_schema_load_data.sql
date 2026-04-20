@@ -1,16 +1,13 @@
--- ============================================================
 -- Revenue Analysis — Schema Completo + Carga de Datos
--- ============================================================
 -- Define el modelo relacional completo del proyecto e importa
 -- los datos desde CSVs multi-país (US, CA, UK).
 -- Incluye análisis de estado de tarjetas con window functions.
--- ============================================================
 
 CREATE DATABASE IF NOT EXISTS sprint4;
 USE sprint4;
 
 
--- ── Definición del modelo relacional ────────────────────────
+-- Definición del modelo relacional
 
 CREATE TABLE IF NOT EXISTS user (
     id          VARCHAR(5)   PRIMARY KEY,
@@ -63,7 +60,7 @@ CREATE TABLE IF NOT EXISTS transaction (
 );
 
 
--- ── Carga de datos desde CSV ─────────────────────────────────
+-- Carga de datos desde CSV
 -- Usuarios distribuidos en 3 archivos por país (US, CA, UK)
 
 SHOW VARIABLES LIKE 'secure_file_priv'; -- verificar ruta permitida para LOAD DATA
@@ -98,15 +95,13 @@ FIELDS TERMINATED BY ',' ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
--- Nota: transactions usa ';' como separador (distinto al resto de CSVs)
+-- Nota: transactions.csv usa ';' como separador (distinto al resto de archivos)
 LOAD DATA INFILE "C:\\ProgramData\\MySQL\\MySQL Server 9.0\\Uploads\\transactions.csv"
 INTO TABLE transaction
 FIELDS TERMINATED BY ';' ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-
--- ── Consultas analíticas ─────────────────────────────────────
 
 -- Usuarios con más de 30 transacciones
 SELECT
@@ -121,15 +116,15 @@ ORDER BY num_transacciones DESC;
 -- Importe medio por IBAN para transacciones de 'Donec Ltd'
 SELECT cred.iban, ROUND(AVG(amount), 2) AS promedio_amount
 FROM transaction t
-JOIN company c     ON t.business_id = c.company_id
-JOIN credit_card cred ON t.card_id  = cred.id
+JOIN company c        ON t.business_id = c.company_id
+JOIN credit_card cred ON t.card_id     = cred.id
 WHERE company_name = 'Donec Ltd'
 GROUP BY cred.iban;
 
 
--- ── Estado de tarjetas (window functions) ────────────────────
+-- Estado de tarjetas con window functions
 -- Clasifica cada tarjeta como activa o inactiva según si sus
--- últimas 3 transacciones fueron declinadas
+-- últimas 3 transacciones fueron todas declinadas
 
 CREATE VIEW RankedTransactions AS (
     SELECT

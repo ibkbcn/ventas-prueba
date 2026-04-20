@@ -1,13 +1,7 @@
--- ============================================================
--- Revenue Analysis — Consultas Analíticas
--- company + transaction
--- ============================================================
+-- Revenue Analysis — Consultas Analíticas: company + transaction
 -- Exploración y análisis de transacciones por empresa y país.
 -- Requiere tablas: company, transaction (con datos cargados).
--- ============================================================
 
-
--- ── Presencia geográfica ─────────────────────────────────────
 
 -- Países distintos donde operan las empresas cliente
 SELECT DISTINCT country
@@ -19,8 +13,6 @@ SELECT COUNT(DISTINCT country)
 FROM company
 JOIN transaction ON company.id = transaction.company_id;
 
-
--- ── Ranking de empresas ──────────────────────────────────────
 
 -- Empresa con mayor importe medio por transacción (excl. declinadas)
 SELECT company_name, AVG(amount) AS avg_amount
@@ -48,8 +40,6 @@ WHERE c.id NOT IN (
 );
 
 
--- ── Análisis temporal ────────────────────────────────────────
-
 -- Top 5 días por volumen de ventas
 -- DATE() extrae la fecha de la columna timestamp (datetime)
 SELECT DATE(timestamp) AS fecha, SUM(amount) AS total_ventas
@@ -68,10 +58,7 @@ GROUP BY company.country
 ORDER BY avg_amount DESC;
 
 
--- ── Análisis de red de empresas ──────────────────────────────
-
--- Transacciones de empresas que comparten país con 'Non Institute'
--- Versión con JOIN
+-- Transacciones de empresas que comparten país con 'Non Institute' — con JOIN
 SELECT t.id
 FROM transaction t
 WHERE t.company_id IN (
@@ -92,8 +79,6 @@ WHERE company_id IN (
     )
 );
 
-
--- ── Filtros combinados ───────────────────────────────────────
 
 -- Transacciones entre 100€ y 200€ en fechas clave de análisis
 SELECT c.company_name, c.phone, c.country, DATE(t.timestamp), t.amount
