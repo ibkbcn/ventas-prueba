@@ -66,7 +66,7 @@ LINES TERMINATED BY '\r\n' IGNORE 1 LINES;
 -- Repetido para users_uk.csv y users_ca.csv
 ```
 
-**Análisis con subqueries y JOINs complejos:**
+**Análisis con subqueries y JOINs:**
 ```sql
 -- Empresas con importe promedio superior a la media global
 SELECT company_name FROM company
@@ -89,8 +89,9 @@ ORDER BY SUM(amount) DESC LIMIT 5;
 La tabla `transaction` actúa como tabla de hechos central, conectada a `credit_card`, `company`, `user` y `products` a través de la tabla intermedia `comprados`. Esta arquitectura permite análisis por producto sin duplicar filas de transacción. El modelo incluye una tabla `Medidas` separada como buena práctica de organización DAX.
 
 <p align="center">
-  <img alt="Star Schema Power BI" src="./images/star_schema.png"/>
+  <img width="1689" height="1019" alt="image" src="https://github.com/user-attachments/assets/78664e70-9c69-4298-8309-541d69796424" />
 </p>
+
 
 ### DAX Measures principales
 
