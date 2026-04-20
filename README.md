@@ -147,10 +147,12 @@ Segmentación de usuarios finales, distribución geográfica y análisis de ingr
 
 ---
 
-## Repositorios SQL relacionados
+## Scripts SQL
 
-El modelado relacional completo se desarrolló en sprints progresivos:
+El modelado relacional completo se desarrolló en tres fases progresivas, disponibles en la carpeta [`/sql`](./sql):
 
-- [Sprint 2 — Consultas analíticas sobre company + transaction](https://github.com/ibkbcn/Sprint-2-SQL)
-- [Sprint 3 — Integración de credit_card: ALTER TABLE, FK, UPDATE](https://github.com/ibkbcn/Sprint-3-SQL)
-- [Sprint 4 — Schema completo + LOAD DATA INFILE multi-país](https://github.com/ibkbcn/Sprint-4-SQL)
+| Archivo | Contenido |
+|---|---|
+| [`01_queries_company_transaction.sql`](./sql/01_queries_company_transaction.sql) | Consultas analíticas: JOINs, subqueries, GROUP BY, funciones de fecha |
+| [`02_credit_card_schema.sql`](./sql/02_credit_card_schema.sql) | Integración de `credit_card`: ALTER TABLE, STR_TO_DATE, FK constraints |
+| [`03_full_schema_load_data.sql`](./sql/03_full_schema_load_data.sql) | Schema completo con todas las tablas + LOAD DATA INFILE multi-país |
