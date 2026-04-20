@@ -2,8 +2,6 @@
 
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)
 ![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=flat&logo=powerbi&logoColor=black)
-![DAX](https://img.shields.io/badge/DAX-Power_BI-orange?style=flat)
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=flat)
 
 Pipeline completo de análisis de ventas: desde la modelización relacional en MySQL hasta un dashboard interactivo multi-país en Power BI con KPIs de negocio y análisis DAX avanzado.
 
